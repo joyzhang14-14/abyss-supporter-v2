@@ -174,13 +174,13 @@ client.on('messageCreate', async msg => {
     'cteam': () => `<@&${ROLE_CAP_ID}> create team 創建隊伍`,
     'jteam': () => '@everyone time to join the team, if you cant find the team pls contact me \n 所有人請加入對應的隊伍，如果找不到隊伍請聯繫我',
     'adj':   () => '@everyone adjust card調卡',
+    'shie':  () => '@everyone avoid hit on shield避免打到盾',
     'sac':   () => '@everyone sac獻祭',
     '2u':    () => '@everyone 2ult二大',
+    
     'fla':   () => '@everyone take flash帶閃',
-
     'azs':   () => '@everyone use flash at beginning開局丟閃',
-    'azs0':  () => `<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at begining`,
-    'jian':  () => `<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at 50%hp`
+    'jian':  () => '@everyone use flash at 50%hp'
   };
 
   if (ownerCmds[raw]) {
@@ -196,6 +196,16 @@ client.on('messageCreate', async msg => {
     await msg.channel.send('@everyone survival team保命隊');
     await delay(5000);
     return msg.channel.send(`<@&${ROLE_CAP_ID}> join later if your team lacks survivability or people \n 晚進如果隊伍存活能力不高或是人少`);
+  }
+  if (raw === 'azs1') {
+    await msg.channel.send(`<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at begining`,);
+    await delay(5000);
+    return msg.channel.send('@everyone pass within 1 run 一把過！');
+  }
+  if (raw === 'jian1') {
+    await msg.channel.send(`<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at 50%hp`,);
+    await delay(5000);
+    return msg.channel.send('@everyone pass within 1 run 一把過！');
   }
 });
 
