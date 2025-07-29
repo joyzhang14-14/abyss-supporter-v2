@@ -98,29 +98,29 @@ client.on('messageCreate', async msg => {
         en: {
           titleSuffix: 'Abyss Strategy for 58',
           goal: 58,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363695806841880656/1381491555122282576'
         },
         cn: {
           titleSuffix: '58層深淵攻略',
           goal: 58,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363734401791430868/1381483774038114466'
         },
         jp: {
           titleSuffix: '58層の深淵戦略',
           goal: 58,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1381483438640730242/1382585667321597963'
         }
       },
       '59': {
         en: {
           titleSuffix: 'Abyss Strategy for 59',
           goal: 59,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363695806841880656/1399235842513309767'
         },
         cn: {
           titleSuffix: '59層深淵攻略',
           goal: 59,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363734401791430868/1399249587968938085'
         },
         jp: {
           titleSuffix: '59層の深淵戦略',
@@ -132,12 +132,12 @@ client.on('messageCreate', async msg => {
         en: {
           titleSuffix: 'Abyss Strategy for 60',
           goal: 60,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363695806841880656/1399249323686105188'
         },
         cn: {
           titleSuffix: '60層深淵攻略',
           goal: 60,
-          link: ''
+          link: 'https://discord.com/channels/1082595320074092574/1363734401791430868/1399251688560398397'
         },
         jp: {
           titleSuffix: '60層の深淵戦略',
@@ -180,7 +180,9 @@ client.on('messageCreate', async msg => {
     
     'fla':   () => '@everyone take flash帶閃',
     'azs':   () => '@everyone use flash at beginning開局丟閃',
-    'jian':  () => '@everyone use flash at 50%hp'
+    'jian':  () => '@everyone use flash at 50%hp',
+
+    'test1':   () => 'test succeed'
   };
 
   if (ownerCmds[raw]) {
