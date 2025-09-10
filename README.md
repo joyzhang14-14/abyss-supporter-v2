@@ -28,21 +28,21 @@ jian （目标层阳剑）
 
 surv0 （缓速打法）
 @everyone take gold dmg card帶金輸出卡
-延迟5秒
+延迟7秒
 @everyone slowing down節奏放緩
 
 surv1 （缓速打法plus）
 @everyone survival team保命隊
-延迟5秒
+延迟7秒
 @TeamCaptain join later if your team lacks survivability or people 
 晚進如果隊伍存活能力不高或是人少
 
 azs1（目标前暗之身）
 @Team6 @Team7 @Team8 use flash at begining
-延迟5秒
+延迟7秒
 @everyone pass within 1 run 一把過！
 
 jian1（目标前阳剑）
 @Team6 @Team7 @Team8 use flash at 50%hp
-延迟5秒
+延迟7秒
 @everyone pass within 1 run 一把過！
