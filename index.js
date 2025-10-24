@@ -5,15 +5,18 @@ const { delay } = require('./utils');
 const {
   BOT_TOKEN: TOKEN,
   OWNER_ID,
+  OWNER_ROLE_ID,
   ROLE_6_ID,
   ROLE_7_ID,
   ROLE_8_ID,
   ROLE_CAP_ID
 } = process.env;
 
-// 校验环境变量
-if (!TOKEN || !OWNER_ID) {
-  console.error('❌ 缺少 BOT_TOKEN 或 OWNER_ID，请检查 .env');
+const OWNER_ROLE = OWNER_ROLE_ID || OWNER_ID;
+
+// Ensure core configuration exists before starting the bot
+if (!TOKEN || !OWNER_ROLE) {
+  console.error('Missing BOT_TOKEN or OWNER_ROLE_ID in .env');
   process.exit(1);
 }
 
@@ -88,10 +91,10 @@ client.on('messageCreate', async msg => {
       ].join('\n'));
     return msg.channel.send({ embeds: [embed] });
   }
- 
+
   const m = raw.match(/^!(\d+)(?:\s*(en|cn|jp))?$/i);
   if (m) {
-    const key  = m[1];                   
+    const key  = m[1];
     const lang = m[2]?.toLowerCase() || 'en';
     const strategies = {
       '58': {
@@ -169,7 +172,15 @@ client.on('messageCreate', async msg => {
     return msg.channel.send({ embeds: [embed] });
   }
 
-  if (msg.author.id !== OWNER_ID) return;
+  let member = msg.member;
+  if (!member && msg.guild) {
+    try {
+      member = await msg.guild.members.fetch(msg.author.id);
+    } catch (err) {
+      member = null;
+    }
+  }
+  if (!member?.roles?.cache?.has(OWNER_ROLE)) return;
   const ownerCmds = {
     'cteam': () => `<@&${ROLE_CAP_ID}> create team 創建隊伍`,
     'jteam': () => '@everyone time to join the team, if you cant find the team pls contact me \n 所有人請加入對應的隊伍，如果找不到隊伍請聯繫我',
@@ -177,7 +188,7 @@ client.on('messageCreate', async msg => {
     'shie':  () => '@everyone avoid hit on shield避免打到盾',
     'sac':   () => '@everyone sac獻祭',
     '2u':    () => '@everyone 2ult二大',
-    
+
     'fla':   () => '@everyone take flash帶閃',
     'azs':   () => '@everyone use flash at beginning開局丟閃',
     'jian':  () => '@everyone use flash at 50%hp',
@@ -191,24 +202,28 @@ client.on('messageCreate', async msg => {
 
   if (raw === 'surv0') {
     await msg.channel.send('@everyone take gold dmg card帶金輸出卡');
-    await delay(5000);
+    await delay(7000);
     return msg.channel.send('@everyone slowing down節奏放緩');
   }
   if (raw === 'surv1') {
     await msg.channel.send('@everyone survival team保命隊');
-    await delay(5000);
+    await delay(7000);
     return msg.channel.send(`<@&${ROLE_CAP_ID}> join later if your team lacks survivability or people \n 晚進如果隊伍存活能力不高或是人少`);
   }
   if (raw === 'azs1') {
     await msg.channel.send(`<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at begining`,);
-    await delay(5000);
+    await delay(7000);
     return msg.channel.send('@everyone pass within 1 run 一把過！');
   }
   if (raw === 'jian1') {
     await msg.channel.send(`<@&${ROLE_6_ID}> <@&${ROLE_7_ID}> <@&${ROLE_8_ID}> use flash at 50%hp`,);
-    await delay(5000);
+    await delay(7000);
     return msg.channel.send('@everyone pass within 1 run 一把過！');
   }
 });
 
 client.login(TOKEN);
+
+
+
+
